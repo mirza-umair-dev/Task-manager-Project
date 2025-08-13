@@ -54,10 +54,10 @@ const ManageTasks = () => {
         <div className='p-2'>
           <h1 className='lg:text-2xl text-xl font-bold mb-4'>Manage Tasks</h1>
           <div className='flex gap-4 mb-4'>
-            <button onClick={() => setfilter('all')} className={`text-xs lg:text-sm flex items-center justify-between gap-2 px-3 py-2 rounded ${filter === 'all' ? 'border-2 border-blue-600' : 'bg-gray-200'}`}>All {tasks.length}</button>
-            <button onClick={() => setfilter('pending')} className={`text-xs lg:text-sm flex items-center justify-between gap-2 px-3 py-2 rounded ${filter === 'pending' ? 'border-2 border-blue-600' : 'bg-gray-200'}`}>{getStatusIcon('pending')} Pending {pendingTasks.length}</button>
-            <button onClick={() => setfilter('completed')} className={`text-xs lg:text-sm flex items-center justify-between gap-2 px-3 py-2 rounded ${filter === 'completed' ? 'border-2 border-blue-600' : 'bg-gray-200'}`}>{getStatusIcon('completed')}Completed {completedTasks.length}</button>
-            <button onClick={() => setfilter('in-progress')} className={`text-xs lg:text-sm flex items-center justify-between gap-2 px-3 py-2 rounded ${filter === 'in-progress' ? 'border-2 border-blue-600' : 'bg-gray-200'}`}>{getStatusIcon('in-progress')}In Progress {inProgressTasks.length}</button>
+            <button onClick={() => setfilter('all')} className={`text-xs lg:text-sm flex items-center justify-between gap-2 px-3 py-2 rounded ${filter === 'all' ? 'border-2 border-blue-600' : 'bg-blue-50 border border-blue-200'}`}>All {tasks.length}</button>
+            <button onClick={() => setfilter('pending')} className={`text-xs lg:text-sm flex items-center justify-between gap-2 px-3 py-2 rounded ${filter === 'pending' ? 'border-2 border-blue-600' : 'bg-blue-50 border border-blue-200'}`}>{getStatusIcon('pending')} Pending {pendingTasks.length}</button>
+            <button onClick={() => setfilter('completed')} className={`text-xs lg:text-sm flex items-center justify-between gap-2 px-3 py-2 rounded ${filter === 'completed' ? 'border-2 border-blue-600' : 'bg-blue-50 border border-blue-200'}`}>{getStatusIcon('completed')}Completed {completedTasks.length}</button>
+            <button onClick={() => setfilter('in-progress')} className={`text-xs lg:text-sm flex items-center justify-between gap-2 px-3 py-2 rounded ${filter === 'in-progress' ? 'border-2 border-blue-600' : 'bg-blue-50 border border-blue-200'}`}>{getStatusIcon('in-progress')}In Progress {inProgressTasks.length}</button>
           </div>
         </div>
         <div>
@@ -66,7 +66,8 @@ const ManageTasks = () => {
           ) : (
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
               {filteredTasks.map(task => (
-                <div key={task._id} className='bg-white p-4 rounded-lg shadow-md' onClick={() => handleClick(task)}>
+                <div key={task._id} className=' p-4 rounded-lg shadow bg-blue-50 border border-blue-200'
+                  onClick={() => handleClick(task)}>
                   <div className='flex justify-between items-center'>
                     <h2 className='text-lg font-semibold'>{task.title}</h2>
                     <div className='flex items-center gap-4'>
@@ -80,8 +81,21 @@ const ManageTasks = () => {
                   <p className='text-gray-600 text-sm mt-3'>{task.description}</p>
                   <p className='text-sm text-gray-500 mt-1'>Due: {new Date(task.duedate).toLocaleDateString()}</p>
 
+                  <div className='mt-6'><label className='font-semibold' >Progress</label></div>
+                  <div className=' mt-1 flex items-center' >
+                    <div className='bg-gray-300 w-full h-4 rounded-lg '>
+                      <div className='bg-gradient-to-r from-blue-400 to-blue-600 h-4 rounded-lg text-white'
+                        style={{ width: `${task.progress || 0}%` }}
+                      >
+
+                      </div>
+
+                    </div>
+                    <h1 className='px-4'>{task.progress}%</h1>
+                  </div>
 
                 </div>
+
               ))}
             </div>
           )}

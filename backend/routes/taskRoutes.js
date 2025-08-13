@@ -12,7 +12,7 @@ router.get('/dashboard',protect,adminOnly,getAdminDashboard);
 router.put('/:id',protect,updateTask);
 router.delete('/:id',protect,deleteTask);
 
-router.put('/:id/checklist',protect,updateChecklist);
+router.put('/:id/checklist',updateChecklist);
 router.put('/:id/status', protect,updateStatus);
 
 

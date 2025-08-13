@@ -19,7 +19,7 @@ const StatusPieChart = ({ data }) => {
   }));
 
   return (
-    <div className="w-full h-[300px] lg:h-[400px]">
+    <div className="w-full h-[300px]">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
@@ -28,7 +28,7 @@ const StatusPieChart = ({ data }) => {
             cy="50%"
             innerRadius={60}
             outerRadius={100}
-            paddingAngle={5}
+            paddingAngle={2}
             dataKey="value"
             label={({ name, percent }) =>
               `${name} (${(percent * 100).toFixed(0)}%)`

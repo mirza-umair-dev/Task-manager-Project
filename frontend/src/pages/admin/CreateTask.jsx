@@ -27,7 +27,7 @@ const CreateTask = () => {
   // If taskId is provided, fetch the task details
   const getTaskDetailsById = async () => {
     try {
-      const response = await axiosInstance.get(API_PATHS.TASKS.GET_TASKS_BY_ID(id));
+      const response = await axiosInstance.get(API_PATHS.TASKS.GET_TASK_BY_ID(id));
 
       if (response.data) {
         const taskInfo = response.data;

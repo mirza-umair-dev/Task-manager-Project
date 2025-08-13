@@ -5,6 +5,7 @@ import { RiFileAddLine } from "react-icons/ri";
 import { BiTask } from "react-icons/bi";
 import { LuUsers } from "react-icons/lu";
 import { MdOutlineLogout } from "react-icons/md";
+
 export const sidebarItems = [
   {
     title: "Dashboard",
@@ -25,6 +26,25 @@ export const sidebarItems = [
     title: "Team Members",
     icon: LuUsers ,
     path: "/admin/manage-users",
+  },
+  {
+    title: "Logout",
+    icon: MdOutlineLogout ,
+    action:'logout'
+  },
+];
+
+
+export const UsersidebarItems = [
+  {
+    title: "Dashboard",
+    icon: LuLayoutDashboard,
+    path: "/user/dashboard",
+  },
+  {
+    title: "My Tasks",
+    icon: BiTask,
+    path: "/user/my-tasks",
   },
   {
     title: "Logout",

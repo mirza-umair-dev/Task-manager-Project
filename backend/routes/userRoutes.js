@@ -9,5 +9,5 @@ router.get('/team-members', protect, getTeamMembers);
 router.get('/:id',protect,getUserById);
 router.get('/',getUsers);
 router.delete('/:id',protect,adminOnly,deleteUser);
-router.put('/:id',updateUser);
+router.put('/:id',protect,updateUser);
 export default router;

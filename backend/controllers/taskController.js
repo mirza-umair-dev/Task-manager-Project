@@ -139,12 +139,12 @@ export const updateChecklist = async (req, res) => {
         if (!task) {
             res.status(404).json({ message: 'User not found' });
         }
-        if (
-            task.createdBy.toString() !== req.user._id.toString() &&
-            task.assignedTo?.toString() !== req.user._id.toString()
-        ) {
-            return res.status(403).json({ message: "Not authorized to update checklist" });
-        }
+        // if (
+        //     task.createdBy.toString() !== req.user._id.toString() &&
+        //     task.assignedTo?.toString() !== req.user._id.toString()
+        // ) {
+        //     return res.status(403).json({ message: "Not authorized to update checklist" });
+        // }
 
         task.todoChecklist = todoChecklist;
 
@@ -172,25 +172,42 @@ export const updateChecklist = async (req, res) => {
 }
 
 export const getUserDashboard = async (req, res) => {
-
-
     try {
         const userId = req.user._id;
+
         const createdCount = await Task.countDocuments({ createdBy: userId });
-        const assignedCount = await Task.countDocuments({ assignedTo: userId });
+        const assignedCount = await Task.countDocuments({ assignedTo: { $in: [userId] } });
+
         const completedCount = await Task.countDocuments({
-            $or: [{ createdBy: userId },
-            { assignedTo: userId },
-            ]
-            , status: 'completed',
+            $or: [{ createdBy: userId }, { assignedTo: { $in: [userId] } }],
+            status: 'completed',
         });
+
+        const pendingCount = await Task.countDocuments({
+            $or: [{ createdBy: userId }, { assignedTo: { $in: [userId] } }],
+            status: 'pending',
+        });
+
+        const inProgressCount = await Task.countDocuments({
+            $or: [{ createdBy: userId }, { assignedTo: { $in: [userId] } }],
+            status: 'in-progress',
+        });
+
         const statusChart = await Task.aggregate([
             {
                 $match: {
-                    $or: [{ createdBy: userId }, { assignedTo: userId }],
+                    $or: [{ createdBy: userId }, { assignedTo: { $in: [userId] } }],
                 },
             },
             { $group: { _id: '$status', count: { $sum: 1 } } },
+        ]);
+        const priorityChart = await Task.aggregate([
+            {
+                $match: {
+                    $or: [{ createdBy: userId }, { assignedTo: { $in: [userId] } }],
+                },
+            },
+            { $group: { _id: '$priority', count: { $sum: 1 } } },
         ]);
 
         res.status(200).json({
@@ -204,17 +221,20 @@ export const getUserDashboard = async (req, res) => {
                 createdCount,
                 assignedCount,
                 completedCount,
+                pendingCount,
+                inProgressCount,
             },
             charts: {
                 statusChart,
+                priorityChart
             },
-        })
-    }
-    catch (error) {
+        });
+    } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: 'Intternal server error' })
+        return res.status(500).json({ message: 'Internal server error' });
     }
-}
+};
+
 
 export const getAdminDashboard = async (req, res) => {
     try {
