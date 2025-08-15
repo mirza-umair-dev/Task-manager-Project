@@ -13,7 +13,6 @@ const Sidebar = () => {
 
     
   }
-  console.log("User in Sidebar", user);
   return (
     <div className='flex flex-col px-3 py-6 bg-gray-50 '>
 

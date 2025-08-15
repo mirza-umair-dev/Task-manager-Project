@@ -17,7 +17,6 @@ const MyTasks = () => {
     try {
       const response = await axiosInstance.get(API_PATHS.TASKS.GET_ALL_TASKS);
       settasks(response.data);
-      console.log("Tasks fetched:", response.data);
       setisLoading(false);
 
     } catch (error) {

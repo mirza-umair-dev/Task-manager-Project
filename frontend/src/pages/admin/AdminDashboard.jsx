@@ -20,13 +20,11 @@ const AdminDashboard = () => {
   const fetchdasshboardData = async () => {
     const response = await axiosInstance.get(API_PATHS.TASKS.GET_DASHBOARD_DATA);
     setdasshboardData(response.data);
-    console.log(response.data);
   }
 
   const fetchTaskData = async () => {
     const response = await axiosInstance.get(API_PATHS.TASKS.GET_ALL_TASKS);
     settaskData(response.data);
-    console.log(response.data)
   }
    useEffect(() => {
 

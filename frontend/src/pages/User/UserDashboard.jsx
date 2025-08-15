@@ -20,15 +20,12 @@ const UserDashboard = () => {
   const fetchdasshboardData = async () => {
     const response = await axiosInstance.get(API_PATHS.TASKS.GET_USER_DASHBOARD_DATA);
     setdasshboardData(response.data);
-    console.log(response.data);
 
-    console.log("Dashboard Data", response.data.stats);
   }
 
   const fetchTaskData = async () => {
     const response = await axiosInstance.get(API_PATHS.TASKS.GET_ALL_TASKS);
     settaskData(response.data);
-    console.log(response.data)
   }
   useEffect(() => {
 

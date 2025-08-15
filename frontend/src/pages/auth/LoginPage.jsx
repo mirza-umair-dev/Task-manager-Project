@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react'
 import Input from '../../components/Input';
 import { BsEmojiLaughing } from "react-icons/bs";
-import { Link, Navigate, useNavigate} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import axiosInstance from '../../utils/axiosInstance.js'
 import { API_PATHS } from '../../utils/ApiPaths.js';
 import { UserContext } from '../../context/UserProvider.jsx';
-// import signinpic1 from '/Mern Projects/Task Manager Latest/frontend/src/assets/signinpic1.jpg'
+
 const LoginPage = () => {
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
@@ -82,9 +82,6 @@ const LoginPage = () => {
                         value={password}
                         onChange={({ target }) => setpassword(target.value)}
                     />
-                    <Link to='/auth/forgot-password' 
-                    className='text-blue-800 text-sm underline'
-                    >Forgot Password?</Link>
                     {error && (
                         <p className='text-red-700 text-sm'>{error}</p>
                     )}

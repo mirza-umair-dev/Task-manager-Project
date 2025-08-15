@@ -11,6 +11,7 @@ const Navbar = ({toggleSidebar,isShown}) => {
 
         {isShown ? (<IoClose className='text-2xl font-bold text-red-800' />) :(<RiMenu2Line className='text-2xl font-bold' />) }
         
+        <h1 className='text-sm font-semibold text-blue-500'>100Tasks</h1>
       </div>  
     </div>
   )

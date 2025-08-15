@@ -30,7 +30,7 @@ const __dirname = path.resolve();
 
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 //Defining port
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ;
 
 //Connecting database
 connectDb();
@@ -42,7 +42,6 @@ app.get('/', (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 

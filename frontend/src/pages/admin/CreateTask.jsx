@@ -53,7 +53,6 @@ const CreateTask = () => {
 
       } 
 
-      console.log("Task details fetched successfully:", response.data);
     }
     catch (error) {
         console.error("Error fetching task details:", error);
@@ -78,7 +77,6 @@ const CreateTask = () => {
       }
     );
 
-    console.log("Task updated successfully:", response.data);
     window.history.back();
     toast.success("Task updated successfully!");
   } catch (error) {
@@ -90,7 +88,6 @@ const CreateTask = () => {
 const deleteTask = async () => {
   try {
     const response = await axiosInstance.delete(API_PATHS.TASKS.DELETE_TASK(id));
-    console.log("Task deleted successfully:", response.data);
     toast.success("Task deleted successfully!");
     setFormData({
       title: '',  
@@ -113,7 +110,6 @@ const deleteTask = async () => {
   const InputHandler = (e) => {
       const { name, value } = e.target;
       setFormData((prev) => ({ ...prev, [name]: value }));
-      console.log("Form Data", formData);
     };
 
     const getUsers = async () => {
@@ -178,7 +174,6 @@ const deleteTask = async () => {
           duedate: new Date(formData.duedate).toISOString(),
 
         });
-        console.log("Task created successfully:", response.data);
         toast.success("Task created successfully!");
 
         setFormData({

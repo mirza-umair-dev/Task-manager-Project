@@ -11,7 +11,6 @@ const ManageUsers = () => {
     try {
       const response  =  await axiosInstance.get(API_PATHS.USERS.GET_TEAM_MEMBERS);
       setUsers(response.data.teamMembers);
-      console.log("Users fetched successfully:", response.data.teamMembers);
     } catch (error) {
 
       console.error("Error fetching users:", error);

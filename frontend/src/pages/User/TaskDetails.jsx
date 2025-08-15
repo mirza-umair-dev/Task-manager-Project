@@ -15,7 +15,6 @@ const TaskDetails = () => {
 
     try {
       const response = await axiosInstance.get(API_PATHS.TASKS.GET_TASK_BY_ID(id));
-      console.log("Task Details:", response.data);
       settask(response.data);
       setisLoading(false);
 

@@ -37,7 +37,6 @@ const token = generateToken(newUser._id);
             token
         });
 
-        console.log("User Added")
     }
     catch (err) {
         console.error(err);
