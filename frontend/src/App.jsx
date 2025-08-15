@@ -10,7 +10,6 @@ import CreateTask from './pages/admin/CreateTask'
 import LoginPage from './pages/auth/LoginPage'
 import SignUpPage from './pages/auth/SignUpPage'
 import PrivateRoute from './routes/PrivateRoute'
-import ForgotPassword from './pages/auth/ForgotPassword'
 import { ToastContainer } from 'react-toastify';
 
 const App = () => {
@@ -21,7 +20,6 @@ const App = () => {
         <Route path="/" element={<Navigate to="/auth/login" />} />
         <Route path='/auth/login' element={<LoginPage />} />
         <Route path='/auth/signup' element={<SignUpPage />} />
-        <Route path='/auth/forgot-password' element={<ForgotPassword />} />
         {/* User Routes */}
 
        <Route element={<PrivateRoute allowedRoles={['user']}/>} >
